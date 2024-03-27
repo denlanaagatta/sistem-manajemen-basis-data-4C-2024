@@ -1,0 +1,84 @@
+# NOMOR 1
+
+CREATE DATABASE sewa_mobil;
+USE sewa_mobil;
+
+CREATE TABLE mobil (
+    id_mobil INT(11) PRIMARY KEY AUTO_INCREMENT,
+    merk VARCHAR(100),
+    model VARCHAR(100),
+    tahun INT(4),
+    warna VARCHAR(50),
+    harga_sewa BIGINT(50)
+);
+
+CREATE TABLE peminjam (
+    id_peminjam INT(11) PRIMARY KEY AUTO_INCREMENT,
+    nama VARCHAR(100),
+    alamat VARCHAR(255),
+    nomorhp VARCHAR(20),
+    email VARCHAR(100)
+);
+
+CREATE TABLE detail (
+    id_detail INT(11) PRIMARY KEY AUTO_INCREMENT,
+    id_mobil INT(11),
+    id_peminjam INT(11),
+    tanggal_sewa DATE,
+    tanggal_kembali DATE,
+    total_harga BIGINT(50)
+);
+
+# NOMOR 2
+
+INSERT INTO mobil (merk, model, tahun, warna, harga_sewa) VALUES
+('Toyota', 'Avanza', 2018, 'Hitam', 150000),
+('Honda', 'Jazz', 2019, 'Putih', 170000),
+('Suzuki', 'Ertiga', 2020, 'Silver', 160000),
+('Mitsubishi', 'Xpander', 2019, 'Merah', 180000),
+('Nissan', 'Grand Livina', 2017, 'Biru', 140000),
+('Daihatsu', 'Terios', 2019, 'Abu-abu', 160000),
+('Ford', 'Ecosport', 2018, 'Merah', 175000),
+('Chevrolet', 'Spin', 2017, 'Hitam', 155000),
+('Hyundai', 'H1', 2020, 'Putih', 190000),
+('KIA', 'Seltos', 2021, 'Hijau', 200000);
+
+INSERT INTO peminjam (nama, alamat, nomorhp, email) VALUES
+('Agus Prabowo', 'Jakarta', '081234567890', 'agus.prabowo@example.com'),
+('Budi Santoso', 'Bandung', '085678901234', 'budi.santoso@example.com'),
+('Citra Wijaya', 'Surabaya', '089012345678', 'citra.wijaya@example.com'),
+('Dewi Suryani', 'Medan', '081234567891', 'dewi.suryani@example.com'),
+('Eko Hadi', 'Semarang', '085678901235', 'eko.hadi@example.com'),
+('Fani Maulana', 'Yogyakarta', '089012345679', 'fani.maulana@example.com'),
+('Gita Kusuma', 'Malang', '081234567892', 'gita.kusuma@example.com'),
+('Hari Susanto', 'Denpasar', '085678901236', 'hari.susanto@example.com'),
+('Ika Purnama', 'Palembang', '089012345680', 'ika.purnama@example.com'),
+('Joko Raharjo', 'Banjarmasin', '081234567893', 'joko.raharjo@example.com');
+
+INSERT INTO detail (id_mobil, id_peminjam, tanggal_sewa, tanggal_kembali, total_harga) VALUES
+(1, 3, '2024-02-01', '2024-02-05', 600000),
+(2, 5, '2024-02-02', '2024-02-06', 680000),
+(3, 1, '2024-02-03', '2024-02-07', 640000),
+(4, 4, '2024-02-04', '2024-02-08', 720000),
+(5, 2, '2024-02-05', '2024-02-09', 560000),
+(6, 10, '2024-02-06', '2024-02-10', 640000),
+(7, 5, '2024-02-07', '2024-02-11', 700000),
+(8, 8, '2024-02-08', '2024-02-12', 620000),
+(9, 1, '2024-02-09', '2024-02-13', 760000),
+(10, 3, '2024-02-10', '2024-02-14', 800000);
+
+# NOMOR 3
+
+SELECT * FROM mobil;
+
+SELECT * FROM peminjam;
+
+SELECT * FROM detail;
+
+# NOMOR 4
+
+ALTER TABLE peminjam RENAME TO penyewa;
+
+# NOMOR 5
+
+DROP DATABASE sewa_mobil;
