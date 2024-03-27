@@ -1,153 +1,54 @@
-CREATE DATABASE perpustakaan;
-USE perpustakaan;
-
-CREATE TABLE petugas(
-idpetugas VARCHAR(10) PRIMARY KEY,
-username VARCHAR(15),
-pass VARCHAR(15),
-nama VARCHAR(25));
-
-CREATE TABLE buku (
-kode_buku VARCHAR(10) PRIMARY KEY,
-judul_buku VARCHAR(50),
-pengarang_buku VARCHAR(30),
-penerbit_buku VARCHAR(30),
-tahun_buku VARCHAR(10),
-jumlah_buku VARCHAR(5),
-status_buku VARCHAR(10),
-klasifikasi_buku VARCHAR(20));
-
-CREATE TABLE anggota(
-idanggota VARCHAR(10) PRIMARY KEY,
-nama_anggota VARCHAR(20),
-angkatan_anggota VARCHAR(6),
-tempat_lahir_anggota VARCHAR(20),
-tanggal_lahir_anggota DATE,
-no_telp INT(12),
-jenis_kelamin VARCHAR(15),
-status_pinjam VARCHAR(15));
-
-CREATE TABLE peminjaman(
-kode_peminjaman VARCHAR(10) PRIMARY KEY,
-idanggota VARCHAR(10),
-idpetugas VARCHAR(10),
-tanggal_pinjam DATE,
-tanggal_kembali DATE,
-kode_buku VARCHAR(10));
-
-CREATE TABLE pengembalian(
-kode_kembali VARCHAR(10) PRIMARY KEY,
-idanggota VARCHAR(10),
-kode_buku VARCHAR(10),
-idpetugas VARCHAR(10),
-tgl_pinjam DATE,
-tgl_kembali DATE,
-denda VARCHAR(15));
-
-INSERT INTO petugas(idpetugas, username, pass, nama) VALUES
-('pt1', 'roniii', 'roni123', 'roni sahroni'),
-('pt2', 'raniaaa', '1sampai8', 'fani rania'),
-('pt3', 'anitaaa', 'inianita', 'anita prameswari');
-
-INSERT INTO buku(kode_buku, judul_buku, pengarang_buku, penerbit_buku, tahun_buku, jumlah_buku, status_buku, klasifikasi_buku) VALUES
-('bk16', 'buku baru', 'norman', 'sinkos book', '1994', 1, 'tersedia', 'filosofi'),
-('bk17', 'buku lama', 'andre', 'kabar pustaka', '1998', 1, 'tersedia', 'filosofi'),
-('bk18', 'shooting star', 'edgar', 'AndhiPublisher', '1999', 1, 'tersedia', 'filosofi'),
-('bk1', 'laskar pelangi', 'andrea hirata', 'benteng pustaka', '2005', 1, 'dipinjam', 'novel'),
-('bk2', 'sang pemimpi', 'andrea hirata', 'benteng pustaka', '2006', 1, 'tersedia', 'novel'),
-('bk3', 'edensor', 'andrea hirata', 'gramedia pustaka utama', '2007', 1, 'tersedia', 'novel'),
-('bk4', 'sebelas patriot', 'andrea hirata', 'gramedia pustaka utama', '2011', 1, 'dipinjam', 'novel'),
-('bk5', 'sirkus pohon', 'andrea hirata', 'gramedia pustaka utama', '2018', 1, 'tersedia', 'novel'),
-('bk6', 'koala kumal', 'raditya dika', 'gramedia pustaka utama', '2015', 1, 'dipinjam', 'novel'),
-('bk7', 'marmut merah jambu', 'raditya dika', 'gramedia pustaka utama', '2010', 1, 'dipinjam', 'novel'),
-('bk8', 'sapien', 'yuval', 'gramedia pustaka utama', '2020', 1, 'tersedia', 'sejarah'),
-('bk9', 'matematika', 'yusuf farizi', 'penerbit erlangga', '2011', 1, 'dipinjam', 'pelajaran'),
-('bk10', 'seni budaya', 'yayuk triyuni', 'penerbit erlangga', '2011', 1, 'tersedia', 'pelajaran'),
-('bk11', 'ilmu pengetahuan alam', 'suwadi', 'penerbit erlangga', '2011', 1, 'tersedia', 'pelajaran'),
-('bk12', 'ilmu pengetahuan sosial', 'suprapti', 'penerbit erlangga', '2011', 1, 'tersedia', 'pelajaran'),
-('bk13', 'pendidikan kewarganegaraan', 'zuhriyah', 'penerbit erlangga', '2011', 1, 'tersedia', 'pelajaran'),
-('bk14', 'bahasa indonesia', 'erlita', 'penerbit erlangga', '2011', 1, 'tersedia', 'pelajaran'),
-('bk15', 'pendidikan agama islam', 'abu bakri', 'penerbit erlangga', '2011', 1, 'tersedia', 'pelajaran');
-
-INSERT INTO anggota(idanggota, nama_anggota, angkatan_anggota, tempat_lahir_anggota, tanggal_lahir_anggota, no_telp, jenis_kelamin, status_pinjam) VALUES
-('ang1', 'tri anggoro', '2020', 'surabaya', '2-04-12', 08181234, 'laki-laki', 'bebas pinjam'),
-('ang2', 'regita indah', '2019', 'sidoarjo', '2-03-15', 08181412, 'perempuan', 'bebas pinjam'),
-('ang3', 'rhisma ayu', '2019', 'gresik', '1999-12-10', 08781234, 'perempuan', 'bebas pinjam'),
-('ang4', 'fitrah rohman', '2019', 'lamongan', '2-12-01', 08733423, 'laki-laki', 'bebas pinjam'),
-('ang5', 'naura maulidya', '2020', 'bangkalan', '2001-07-20', 08412353, 'perempuan', 'bebas pinjam'),
-('ang6', 'arya bima', '2019', 'sampang', '1999-06-12', 08234345, 'laki-laki', 'bebas pinjam'),
-('ang7', 'nur hidayat', '2020', 'solo', '2001-04-12', 08223456, 'laki-laki', 'bebas pinjam'),
-('ang8', 'reza saputra', '2020', 'bangkalan', '2001-08-23', 08238323, 'laki-laki', 'bebas pinjam'),
-('ang9', 'rully nugra', '2021', 'surabaya', '2002-10-29', 08111234, 'laki-laki', 'dibatasi'),
-('ang10', 'alfin marsha', '2021', 'malang', '2001-02-21', 08112257, 'laki-laki', 'bebas pinjam'),
-('ang11', 'putri rizqi', '2020', 'gresik', '2-09-27', 08029102, 'perempuan', 'bebas pinjam'),
-('ang12', 'ita fauzi', '2019', 'lamongan', '1999-01-22', 08122573, 'perempuan', 'bebas pinjam'),
-('ang13', 'della ghalda', '2020', 'pasuruan', '2-01-10', 08121992, 'perempuan', 'bebas pinjam'),
-('ang14', 'salsa liza', '2020', 'banyuwangi', '2-05-23', 08119287, 'perempuan', 'bebas pinjam');
-
-INSERT INTO peminjaman(kode_peminjaman, idanggota, idpetugas, tanggal_pinjam, tanggal_kembali, kode_buku) VALUES
-('kp1', 'ang12', 'pt1', '2022-03-03', '2022-03-06', 'bk1'),
-('kp2', 'ang10', 'pt1', '2022-03-05', '2022-03-13', 'bk4'),
-('kp3', 'ang13', 'pt2', '2022-03-06', '2022-03-15', 'bk5'),
-('kp4', 'ang2', 'pt1', '2022-03-08', '2022-03-08', 'bk2'),
-('kp5', 'ang4', 'pt1', '2022-03-14', '2022-03-17', 'bk9'),
-('kp6', 'ang2', 'pt2', '2022-03-16', '2022-03-20', 'bk11'),
-('kp7', 'ang6', 'pt3', '2022-03-17', '2022-03-21', 'bk12'),
-('kp8', 'ang11', 'pt2', '2022-03-22', '2022-03-24', 'bk8'),
-('kp9', 'ang2', 'pt2', '2022-03-22', '2022-03-25', 'bk4'),
-('kp10', 'ang4', 'pt1', '2022-03-22', '2022-03-25', 'bk9'),
-('kp11', 'ang2', 'pt1', '2022-03-23', '2022-03-27', 'bk10'),
-('kp12', 'ang10', 'pt3', '2022-03-25', '2022-03-27', 'bk4'),
-('kp13', 'ang2', 'pt3', '2022-03-26', '2022-03-29', 'bk14'),
-('kp14', 'ang7', 'pt1', '2022-03-29', '2022-03-30', 'bk2'),
-('kp15', 'ang2', 'pt1', '2022-04-01', '2022-03-02', 'bk15');
-
-INSERT INTO pengembalian(kode_kembali, idanggota, kode_buku, idpetugas, tgl_pinjam, tgl_kembali, denda) VALUES
-('pg1', 'ang12', 'bk1', 'pt3', '2022-03-03', '2022-03-06', '0'),
-('pg2', 'ang10', 'bk4', 'pt1', '2022-03-05', '2022-03-13', '5'),
-('pg3', 'ang13', 'bk5', 'pt1', '2022-03-06', '2022-03-15', '1'),
-('pg4', 'ang2', 'bk2', 'pt1', '2022-03-08', '2022-03-08', '0'),
-('pg5', 'ang4', 'bk9', 'pt2', '2022-03-14', '2022-03-17', '0'),
-('pg6', 'ang2', 'bk11', 'pt2', '2022-03-16', '2022-03-20', '0'),
-('pg7', 'ang6', 'bk12', 'pt3', '2022-03-17', '2022-03-21', '0'),
-('pg8', 'ang11', 'bk8', 'pt2', '2022-03-22', '2022-03-24', '0'),
-('pg9', 'ang2', 'bk4', 'pt3', '2022-03-22', '2022-03-25', '0'),
-('pg10', 'ang4', 'bk9', 'pt1', '2022-03-22', '2022-03-25', '0'),
-('pg11', 'ang2', 'bk10', 'pt3', '2022-03-23', '2022-03-27', '0'),
-('pg12', 'ang10', 'bk4', 'pt1', '2022-03-25', '2022-03-27', '0'),
-('pg13', 'ang2', 'bk14', 'pt3', '2022-03-26', '2022-03-29', '0'),
-('pg14', 'ang7', 'bk2', 'pt2', '2022-03-29', '2022-03-30', '0'),
-('pg15', 'ang2', 'bk15', 'pt1', '2022-04-01', '2022-04-02', '0');
-
 # NOMOR 1
-CREATE VIEW pinjam_lebih_dari_5 AS
-SELECT anggota.idanggota, anggota.nama_anggota, angkatan_anggota, COUNT(peminjaman.idanggota) AS jumlah_dipinjam 
-FROM peminjaman
-INNER JOIN anggota ON anggota.idanggota = peminjaman.idanggota
-GROUP BY anggota.idanggota
-HAVING COUNT(peminjaman.idanggota) > 1;
+
+# blok 1, contoh updatable view 1
+CREATE VIEW view_transaksi AS
+SELECT ts.id_transaksi, m.merk, m.model, p.nama AS nama_pelanggan, ts.tanggal_sewa, ts.tanggal_kembali, ts.total_biaya
+FROM transaksi_sewa ts
+JOIN mobil m ON ts.id_mobil = m.id_mobil
+JOIN pelanggan p ON ts.id_pelanggan = p.id_pelanggan;
+
+# memanggil view
+SELECT * FROM view_transaksi;
+
+# update view_transaksi
+UPDATE view_transaksi
+SET tanggal_sewa = '2024-02-1'
+WHERE id_transaksi = 1;
+
+# memanggil view lagi untuk cek perubahan
+SELECT * FROM view_transaksi;
+
+# blok 2, contoh updatable view 2
+CREATE VIEW view_detail_pembayaran AS
+SELECT p.id_pembayaran, ts.id_transaksi, p.metode_pembayaran, p.jumlah_pembayaran, p.tanggal_pembayaran
+FROM pembayaran p
+INNER JOIN transaksi_sewa ts ON p.id_pembayaran = ts.id_transaksi;
+
+# memanggil view
+SELECT * FROM view_detail_pembayaran;
+
+# update view_detail_pembayaran
+UPDATE view_detail_pembayaran
+SET metode_pembayaran = 'Transfer Bank'
+WHERE id_transaksi = 1;
+
+# memanggil view untuk cek perubahan
+SELECT * FROM view_detail_pembayaran;
 
 # NOMOR 2
-CREATE VIEW petugas_transaksi_jumlah_terpinjam AS
-SELECT petugas.idpetugas, petugas.nama, COUNT(peminjaman.kode_buku) AS jumlah_buku_terpinjam
-FROM peminjaman
-INNER JOIN petugas ON petugas.idpetugas = peminjaman.idpetugas
-GROUP BY petugas.idpetugas;
 
-# NOMOR 3
-CREATE VIEW petugas_transaaksi_terbanyak AS
-SELECT petugas.idpetugas, petugas.nama, COUNT(peminjaman.kode_buku) AS jumlah_buku_terpinjam
-FROM peminjaman
-INNER JOIN petugas ON petugas.idpetugas = peminjaman.idpetugas
-GROUP BY petugas.idpetugas
-ORDER BY jumlah_buku_terpinjam DESC
-LIMIT 1;
+# blok 3, contoh read only view 1
+CREATE VIEW view_informasi_mobil AS
+SELECT id_mobil, merk, model, tahun, warna, harga_sewa
+FROM mobil;
 
-# NOMOR 4
-CREATE VIEW buku_terbanyak_dipinjam AS
-SELECT buku.judul_buku, COUNT(peminjaman.kode_buku) AS total_terpinjam
-FROM peminjaman
-INNER JOIN buku ON buku.kode_buku = peminjaman.kode_buku
-GROUP BY buku.judul_buku
-ORDER BY total_terpinjam DESC
-LIMIT 1;
+# memanggil view
+SELECT * FROM view_informasi_mobil;
+
+# blok 4, contoh read only view 2
+CREATE VIEW view_informasi_pelanggan AS
+SELECT id_pelanggan, nama, alamat, nomor_hp
+FROM pelanggan;
+
+# memanggil view
+SELECT * FROM view_informasi_pelanggan
