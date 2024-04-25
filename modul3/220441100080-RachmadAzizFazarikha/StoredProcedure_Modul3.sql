@@ -88,3 +88,27 @@ BEGIN
 END //
 
 CALL hapus_buku("Merana", 91000031);
+
+DELIMITER //
+CREATE PROCEDURE tampil_anggota_laki(
+	OUT anggota VARCHAR(150)
+)
+BEGIN 
+	SELECT nama_full FROM anggota WHERE gender = 'L';
+END //
+
+CALL tampil_anggota_laki(@anggota);
+SELECT @anggota;
+
+#inout
+DELIMITER //
+CREATE PROCEDURE detail_buku(
+	INOUT id INT(11)
+)
+BEGIN
+	SELECT * FROM buku_pepus WHERE id_buku = id;
+END //
+
+SET @id = 91000001;
+CALL detail_buku(@id);
+SELECT @id;
