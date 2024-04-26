@@ -26,6 +26,20 @@ CALL Count_Dokter_By_Spesialisasi('Dokter Umum', @total_dokter);
 SELECT @total_dokter AS total_dokter;
 DELIMITER ;
 
+-- OUT menampilkan nama dokter
+DELIMITER //
+CREATE PROCEDURE Get_Dokter_Nama(
+    IN dokter_id INT,
+    OUT nama_dokter VARCHAR(25)
+)
+BEGIN
+    SELECT nama INTO nama_dokter FROM dokter
+    WHERE id_dokter = dokter_id
+    LIMIT 1;
+END //
+CALL Get_Dokter_Nama(20, @nama_dokter);
+SELECT @nama_dokter AS nama_dokter;
+
 -- INOUT
 DELIMITER //
 CREATE PROCEDURE Update_Stok_Obat(
@@ -62,28 +76,6 @@ CALL Insert_New_Pasien(21, 'Tania', '2000-05-05', '573 Main Street', 'Perempuan'
 SELECT * FROM pasien;
 DELIMITER ;
 DROP PROCEDURE IF EXISTS Insert_New_Pasien;
-
-
-DELIMITER //
-CREATE PROCEDURE Insert_New_Rawat_Inap(
-    IN id_rawat_inap INT,
-    IN id_pasien INT,
-    IN id_dokter INT,
-    IN id_ruangan INT,
-    IN id_obat INT,
-    IN tgl_masuk DATE,
-    IN tgl_keluar DATE,
-    IN diagnosis TEXT,
-    IN stts VARCHAR(25),
-)
-BEGIN
-    INSERT INTO rawat_inap (id_rawat_inap, id_pasien, id_dokter, id_ruangan, id_obat, tgl_masuk, tgl_keluar, diagnosis, stts)
-    VALUES (id_rawat_inap, id_pasien, id_dokter, id_ruangan, id_obat, tgl_masuk, tgl_keluar, diagnosis, stts);
-END //
-
-CALL Insert_New_Pasien(, 'Tania', '2000-05-05', '573 Main Street', 'Perempuan', '111111111');
-SELECT * FROM rawat_inap;
-DELIMITER ;
 
 -- Memperbaharui data
 DELIMITER //
