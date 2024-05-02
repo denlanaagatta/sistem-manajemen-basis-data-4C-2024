@@ -83,5 +83,5 @@ CREATE PROCEDURE DeletePeminjam(IN p_id_peminjam INT)
 BEGIN
     DELETE FROM peminjam WHERE id_peminjam = p_id_peminjam;
 END//
-CALL DeletePeminjam(23);
+CALL DeletePeminjam(24);
 SELECT * FROM peminjam;
